@@ -1,0 +1,40 @@
+<%= form_with(model: sale, local: true) do |form| %>
+  <% if sale.errors.any? %>
+    <br>
+    <div id="error_explanation" style="margin:auto">
+      <ul>
+      <% sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <br>
+  <div class="form-group" style="width:400px;margin:auto;">
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :client_id, Client.model_name.human, style: "float:left" %>
+      <div style="float:right">
+      <%= form.collection_select :client_id, Client.all, :id, :description, {}, { class: "select2", multiple: false } %>
+      </div>
+    </div>
+    
+    <div class="field form-control" style="display:inline-block; height: auto;">
+      <%= form.label :product_ids, Product.model_name.human(count: 2), style: "float:left"%>
+      <div style="float: right">
+      <%#= form.collection_select :product_ids, Product.all, :id, :description, {}, { class: "select2", id: "dropdown", multiple: false } %>
+      <%= form.collection_select :products_selector, Product.all, :id, :description, {}, { class: "select2", id: "dropdown", multiple: false } %>
+      <button type="button" class="btn btn-primary btn-sm" id="increase-item">+</button>
+      </div>
+
+      <div id="selected-items" align="left" hidden="true">
+      <br><br>      
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>

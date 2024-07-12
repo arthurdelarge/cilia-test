@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<br>
+<div>
+  <% if current_admin %>
+    <%= link_to t('links.edit'), edit_product_path(@product) %> |
+  <% end %>
+<%= link_to t('links.back'), products_path %>
+</div>
+<br>
+
+<div class="card" style="width:50%;margin-left:auto; margin-right:auto;padding:10px; text-align: left">
+  <p>
+    <strong><%= "#{Product.human_attribute_name(:description)}:" %></strong>
+    <%= @product.description %>
+  </p>
+  
+  <p>
+    <strong><%= "#{Product.human_attribute_name(:long_description)}:" %></strong>
+    <%= @product.long_description %>
+  </p>
+  
+  <p>
+    <strong><%= "#{Product.human_attribute_name(:price)}:" %></strong>
+    <%= @product.price %>
+  </p>
+  
+  <p>
+    <strong><%= "#{Product.human_attribute_name(:image)}:" %></strong><br>
+    <div align="center"><%= image_tag @product.image.url(:medium) %></div>
+  </p>
+</div>

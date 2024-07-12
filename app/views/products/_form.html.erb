@@ -1,0 +1,39 @@
+<%= form_with(model: product, local: true, html: { multipart: true }) do |form| %>
+  <% if product.errors.any? %>
+    <br>
+    <div id="error_explanation" style="margin:auto">
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <br>
+  <div class="form-group" style="width:400px;margin:auto;">
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
+  
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :description, style: "float:left"  %>
+      <%= form.text_field :description, style: "width:75%;float:right" %>
+    </div>
+  
+    <div class="field form-control" style="display: inline-block;">
+      <%= form.label :long_description, style: "float:left"  %>
+      <%= form.text_field :long_description, style: "width:75%;float:right" %>
+    </div>
+  
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :price, style: "float:left"  %>
+      <%= form.text_field :price, style: "width:75%;float:right" %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>

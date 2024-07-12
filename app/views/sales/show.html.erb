@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<br>
+<div>
+<%= link_to t('links.edit'), edit_sale_path(@sale) %> |
+<%= link_to t('links.back'), sales_path %>
+</div>
+<br>
+
+<div  class="card" style="width:50%;margin-left:auto; margin-right:auto;padding:10px; text-align: left">
+  <p>
+    <strong><%= "#{Client.model_name.human }:" %></strong>
+    <%= @sale.client.description %>
+  </p>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Product.human_attribute_name(:description) %></th>
+        <th><%= Product.human_attribute_name(:long_description) %></th>
+        <th><%= Product.human_attribute_name(:price) %></th>
+        <th><%= t('amount') %></th>
+        <th><%= t('total_price') %></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% lastProduct = @sale.products.sort.first %>
+      <% amount = 0 %>
+      <% total_price = 0 %>
+      <% @sale.products.sort.each do |product| %>
+        <% if lastProduct.description != product.description %>
+          <tr>
+            <td><%= lastProduct.description %></td>
+            <td><%= lastProduct.long_description %></td>
+            <td><%= lastProduct.price %></td>
+            <td><%= amount %></td>
+            <td><%= total_price %></td>
+          </tr>
+          <% lastProduct = product %>
+          <% amount = 1 %>
+          <% total_price = product.price %>
+        <% else %>
+          <% amount += 1 %>
+          <% total_price = amount * lastProduct.price %>
+        <% end %>
+      <% end %>
+      <tr>
+        <td><%= lastProduct.description %></td>
+        <td><%= lastProduct.long_description %></td>
+        <td><%= lastProduct.price %></td>
+        <td><%= amount %></td>
+        <td><%= total_price %></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  <p>
+    <strong><%= "#{t('total_price')}:" %></strong>
+    <%= @sale.products.sum(&:price) %>
+  </p>
+</div>

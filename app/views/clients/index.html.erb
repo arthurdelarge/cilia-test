@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @clients.model_name.human(count: 2) %></h1>
+
+<div>
+<%= link_to "#{t('links.new')} #{@clients.model_name.human}", new_client_path %> |
+<%= link_to t('links.back'), root_path %>
+</div>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= @clients.human_attribute_name(:description) %></th>
+      <th><%= @clients.human_attribute_name(:email) %></th>
+      <th><%= @clients.human_attribute_name(:birth_date) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.description %></td>
+        <td><%= client.email %></td>
+        <% if client.birth_date %>
+          <td><%= l(client.birth_date) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= link_to t('links.show'), client %></td>
+        <td><%= link_to t('links.edit'), edit_client_path(client) %></td>
+        <td><%= link_to t('links.destroy'), client, method: :delete, data: { confirm: t('confirm') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

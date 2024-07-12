@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<br>
+<div>
+<%= link_to t('links.edit'), edit_client_path(@client) %> |
+<%= link_to t('links.back'), clients_path %>
+</div>
+<br>
+
+<div class="card" style="width:50%;margin-left:auto; margin-right:auto;padding:10px; text-align: left;">
+  <p>
+    <strong><%= "#{Client.human_attribute_name(:description)}:" %></strong>
+    <%= @client.description %>
+  </p>
+  
+  <p>
+    <strong><%="#{Client.human_attribute_name(:email)}:" %></strong>
+    <%= @client.email %>
+  </p>
+  
+  <% if @client.birth_date %>
+  <p>
+    <strong><%= "#{Client.human_attribute_name(:birth_date)}:" %></strong>
+    <%= l(@client.birth_date) %>
+  </p>
+  <% end %>
+</div>

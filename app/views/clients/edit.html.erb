@@ -1,0 +1,7 @@
+<br>
+<h1><%= "#{t('links.edit')} #{@client.model_name.human}" %></h1>
+
+<%= link_to t('links.show'), @client %> |
+<%= link_to t('links.back'), clients_path %>
+
+<%= render 'form', client: @client %>

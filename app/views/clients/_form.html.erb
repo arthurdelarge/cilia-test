@@ -1,0 +1,34 @@
+<%= form_with(model: client, local: true) do |form| %>
+  <% if client.errors.any? %>
+    <br>
+    <div id="error_explanation" style="margin:auto">
+      <ul>
+      <% client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <br>
+  <div class="form-group" style="width:400px;margin:auto;">
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :description, style: "float:left" %>
+      <%= form.text_field :description, style: "width:75%;float:right" %>
+    </div>
+  
+    <div class="field form-control" style="display:inline-block;">
+      <%= form.label :email, style: "float:left" %>
+      <%= form.text_field :email, style: "width:75%;float:right" %>
+    </div>
+  
+    <div class="field form-control" style="display:inline-block;" align="right">
+      <%= form.label :birth_date, style: "float:left" %>
+      <%= form.date_select :birth_date, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year - 120, :include_blank => true %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>

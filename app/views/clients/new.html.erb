@@ -1,0 +1,6 @@
+<br>
+<h1 align="center"><%= "#{t('links.new')} #{@client.model_name.human}" %></h1>
+
+<div align="center"><%= link_to t('links.back'), clients_path %></div>
+
+<%= render 'form', client: @client %>

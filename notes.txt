@@ -1,0 +1,5 @@
+- Fazer controller passar os itens repetidos para params[:sale][:product_ids]
+- Inserir amount na tabela de sale_products
+- Fazer uma função para calcular o amount de cada sale_products
+- Validar amount no model sale_products e sale
+- Fazer o amount ser passado para o controller

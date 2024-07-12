@@ -1,0 +1,7 @@
+<br>
+<h1><%= "#{t('links.edit')} #{@product.model_name.human}" %></h1>
+
+<%= link_to t('links.show'), @product %> |
+<%= link_to t('links.back'), products_path %>
+
+<%= render 'form', product: @product %>

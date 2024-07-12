@@ -1,0 +1,6 @@
+<br>
+<h1><%= "#{t('links.new')} #{@sale.model_name.human}" %></h1>
+
+<%= link_to t('links.back'), sales_path %>
+
+<%= render 'form', sale: @sale %>
